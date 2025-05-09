@@ -7,11 +7,17 @@ jobs:
   publish-container:
     name: Publish container
     runs-on: ubuntu-latest
+    permissions:
+      # Publish to GHCR.
+      packages: write
     steps:
     - name: Download build artifacts
       uses: actions/download-artifact@v4
       with:
         path: out
+
+    - name: Login to GHCR
+      run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u "${{ github.actor }}" --password-stdin
 
     - name: Publish container
       run: |
