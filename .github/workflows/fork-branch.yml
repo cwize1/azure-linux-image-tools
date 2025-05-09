@@ -32,6 +32,8 @@ jobs:
         VERSION=$(<"out/version.txt")
         MINOR_VERSION="$(grep -oP '^[0-9]+\.[0-9]+' <<< "$VERSION")"
 
+        pushd repo
+
         MINOR_VERSION_BRANCH="release/v${MINOR_VERSION}"
         git checkout -b "$MINOR_VERSION_BRANCH"
         git push
