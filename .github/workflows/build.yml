@@ -103,13 +103,13 @@ jobs:
             PRERELEASE_PARAM="IMAGE_CUSTOMIZER_VERSION_PREVIEW="
             ;;
           "preview")
-            PRERELEASE_PARAM="IMAGE_CUSTOMIZER_VERSION_PREVIEW=-preview.${{github.run_number}}"
+            PRERELEASE_PARAM="IMAGE_CUSTOMIZER_VERSION_PREVIEW=-preview.${{github.run_id}}"
             ;;
           "main")
-            PRERELEASE_PARAM="IMAGE_CUSTOMIZER_VERSION_PREVIEW=-main.${{github.run_number}}"
+            PRERELEASE_PARAM="IMAGE_CUSTOMIZER_VERSION_PREVIEW=-main.${{github.run_id}}"
             ;;
           *)
-            PRERELEASE_PARAM="IMAGE_CUSTOMIZER_VERSION_PREVIEW=-dev.${{github.run_number}}"
+            PRERELEASE_PARAM="IMAGE_CUSTOMIZER_VERSION_PREVIEW=-dev.${{github.run_id}}"
             ;;
         esac
 
