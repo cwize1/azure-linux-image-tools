@@ -132,8 +132,6 @@ jobs:
       run: |
         set -x
 
-        pushd 
-
         CONTAINER_TAG="imagecustomizer:build"
         ./repo/toolkit/tools/imagecustomizer/container/build-container.sh -t "$CONTAINER_TAG"
 
