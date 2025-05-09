@@ -114,6 +114,7 @@ jobs:
         esac
 
         pushd repo/toolkit
+        mkdir -p out
 
         # Build binary.
         sudo env "PATH=$PATH" make go-imager go-imagecustomizer go-osmodifier $PRERELEASE_PARAM
