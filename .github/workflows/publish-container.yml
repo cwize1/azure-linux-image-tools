@@ -25,4 +25,4 @@ jobs:
         echo "$DOCKER_FULL_PATH"
 
         docker tag "$TARBALL_TAG" "$DOCKER_FULL_PATH"
-        docker push
+        docker push "$DOCKER_FULL_PATH"
