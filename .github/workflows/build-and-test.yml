@@ -17,18 +17,18 @@ on:
 jobs:
   dev:
     if: github.ref != 'refs/heads/main' && !startsWith(github.ref, 'refs/heads/release/')
-    uses: ./.github/workflows/reusable/build-and-test.yml
+    uses: ./.github/workflows/build.yml
     with:
       publishType: dev
 
   main:
     if: github.ref == 'refs/heads/main'
-    uses: ./.github/workflows/reusable/build-and-test.yml
+    uses: ./.github/workflows/build.yml
     with:
       publishType: main
 
   preview:
     if: startsWith(github.ref, 'refs/heads/release/')
-    uses: ./.github/workflows/reusable/build-and-test.yml
+    uses: ./.github/workflows/build.yml
     with:
       publishType: preview

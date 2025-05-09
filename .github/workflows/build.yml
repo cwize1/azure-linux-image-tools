@@ -150,4 +150,4 @@ jobs:
         path: imagecustomizer.tar.gz
 
   build-docs:
-    uses: ./.github/workflows/reusable/docs-build.yml
+    uses: ./.github/workflows/docs-build.yml
