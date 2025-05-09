@@ -25,6 +25,10 @@ jobs:
 
     - name: Fork release branch
       run: |
+        set -x
+
+        find .
+
         VERSION=$(<"out/version.txt")
         MINOR_VERSION="$(grep -oP '^[0-9]+\.[0-9]+' <<< "$VERSION")"
 
