@@ -3,7 +3,6 @@ name: update GitHub pages
 on:
   push:
     branches: ["stable"]
-  workflow_dispatch:
 
 permissions:
   contents: read
