@@ -38,6 +38,8 @@ jobs:
 
     - name: check go.mod
       run: |
+        set -x
+
         if grep -q "go $EXPECTED_GO_VERSION" ./repo/toolkit/tools/go.mod; then
           echo "go.mod has correct version ($EXPECTED_GO_VERSION)"
         else
@@ -49,6 +51,8 @@ jobs:
 
     - name: Check for bad go formatting
       run: |
+        set -x
+
         pushd repo/toolkit
         sudo env "PATH=$PATH" make go-fmt-all
         changes=$(git diff *.go)
@@ -60,6 +64,8 @@ jobs:
 
     - name: check for out-of-date go modules
       run: |
+        set -x
+
         pushd repo/toolkit
         sudo env "PATH=$PATH" make go-mod-tidy
         modchanges=$(git diff tools/go.mod)
@@ -73,6 +79,8 @@ jobs:
 
     - name: check schema.json is up-to-date
       run: |
+        set -x
+
         make -C repo/toolkit/tools/imagecustomizerschemacli/
 
         # Use git diff to check if the schema has changed
@@ -86,6 +94,8 @@ jobs:
 
     - name: Build binary
       run: |
+        set -x
+
         # Create version suffix.
         case "${{ parameters.publishType }}" in
           "prod")
@@ -114,6 +124,8 @@ jobs:
 
     - name: Build container
       run: |
+        set -x
+
         CONTAINER_TAG="imagecustomizer:build"
         ./repo/toolkit/tools/imagecustomizer/container/build-container.sh -t "$CONTAINER_TAG"
 
