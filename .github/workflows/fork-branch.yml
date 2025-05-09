@@ -7,11 +7,8 @@ on:
   workflow_call: {}
 
 jobs:
-  build:
-    uses: ./.github/workflows/reuable/build-and-test.yml
-
-  publish-release:
-    name: Publish release
+  fork-branch:
+    name: Fork release branch
     runs-on: ubuntu-latest
     permissions:
       # Create release branch and publish release.

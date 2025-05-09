@@ -9,12 +9,16 @@ on:
 
 jobs:
   build:
-    uses: ./.github/workflows/reuable/build-and-test.yml
+    uses: ./.github/workflows/build-and-test.yml
 
   publish-container:
-    uses: ./.github/workflows/reuable/publish-container.yml
+    uses: ./.github/workflows/publish-container.yml
+    needs:
+    - build
 
-  fork-release:
-    uses: ./.github/workflows/reuable/fork-release.yml
+  fork-branch:
+    uses: ./.github/workflows/fork-branch.yml
+    needs:
+    - build
 
   # Publish GitHub release
