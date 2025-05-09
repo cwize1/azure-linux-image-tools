@@ -18,7 +18,7 @@ jobs:
       uses: actions/download-artifact@v4
       with:
         path: out
-        artifact-ids: version
+        name: version
 
     - name: Checkout
       uses: actions/checkout@v4
