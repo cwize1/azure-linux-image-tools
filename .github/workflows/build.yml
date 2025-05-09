@@ -113,8 +113,10 @@ jobs:
             ;;
         esac
 
+        pushd repo/toolkit
+
         # Build binary.
-        sudo env "PATH=$PATH" make -C "repo/toolkit" go-imager go-imagecustomizer go-osmodifier $PRERELEASE_PARAM
+        sudo env "PATH=$PATH" make go-imager go-imagecustomizer go-osmodifier $PRERELEASE_PARAM
 
         # Write version to file.
         PACKAGE_VERSION="$(make --silent printvar-image_customizer_full_version $PRERELEASE_PARAM)"
