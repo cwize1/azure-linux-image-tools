@@ -97,7 +97,7 @@ jobs:
         set -x
 
         # Create version suffix.
-        case "${{ parameters.publishType }}" in
+        case "${{ inputs.publishType }}" in
           "prod")
             PRERELEASE_PARAM="IMAGE_CUSTOMIZER_VERSION_PREVIEW="
             ;;
