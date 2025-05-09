@@ -120,7 +120,8 @@ jobs:
 
         # Write version to file.
         PACKAGE_VERSION="$(make --silent printvar-image_customizer_full_version $PRERELEASE_PARAM)"
-        echo "$PACKAGE_VERSION" > "version.txt"
+
+        echo "$PACKAGE_VERSION" > "out/version.txt"
 
         # Print version.
         echo "Version: $PACKAGE_VERSION"
@@ -129,16 +130,18 @@ jobs:
       run: |
         set -x
 
-        CONTAINER_TAG="imagecustomizer:build"
-        ./repo/toolkit/tools/imagecustomizer/container/build-container.sh -t "$CONTAINER_TAG"
+        pushd repo/toolkit
 
-        docker image save "$CONTAINER_TAG" | gzip > "$imagecustomizer.tar.gz"
+        CONTAINER_TAG="imagecustomizer:build"
+        ./tools/imagecustomizer/container/build-container.sh -t "$CONTAINER_TAG"
+
+        docker image save "$CONTAINER_TAG" | gzip > "out/imagecustomizer.tar.gz"
 
     - name: Upload version artifact
       uses: actions/upload-artifact@v4
       with:
         name: version
-        path: version.txt
+        path: repo/toolkit/out/version.txt
 
     - name: Upload binary artifact
       uses: actions/upload-artifact@v4
@@ -150,7 +153,7 @@ jobs:
       uses: actions/upload-artifact@v4
       with:
         name: container
-        path: imagecustomizer.tar.gz
+        path: repo/toolkit/out/imagecustomizer.tar.gz
 
   build-docs:
     uses: ./.github/workflows/docs-build.yml
