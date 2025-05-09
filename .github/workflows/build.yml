@@ -1,7 +1,7 @@
 # Copyright (c) Microsoft Corporation.
 # Licensed under the MIT License.
 
-name: build & test
+name: Build binary and container
 
 permissions:
   contents: read
