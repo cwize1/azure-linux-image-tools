@@ -36,7 +36,7 @@ jobs:
 
         MINOR_VERSION_BRANCH="release/v${MINOR_VERSION}"
         git checkout -b "$MINOR_VERSION_BRANCH"
-        git push
+        git push --set-upstream origin "$MINOR_VERSION_BRANCH"
 
         TAG="v${VERSION}"
         git tag "$TAG"
