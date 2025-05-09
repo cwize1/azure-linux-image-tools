@@ -10,6 +10,8 @@ on:
 jobs:
   build:
     uses: ./.github/workflows/build.yml
+    with:
+      publishType: prod
 
   publish-container:
     uses: ./.github/workflows/publish-container.yml
