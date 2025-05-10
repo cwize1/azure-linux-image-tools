@@ -49,4 +49,4 @@ jobs:
         done
 
         # Push multi-arch manifest.
-        docker push "$DOCKER_FULL_PATH"
+        docker manifest push "$DOCKER_FULL_PATH"
