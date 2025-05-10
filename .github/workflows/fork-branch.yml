@@ -3,6 +3,10 @@
 
 name: Fork release branch
 
+permissions:
+  # Create release branch and publish release.
+  contents: write
+
 on:
   workflow_call: {}
 

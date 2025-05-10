@@ -3,6 +3,10 @@
 
 name: Fork, build, test, and publish new major/minor version.
 
+permissions:
+  contents: read
+  packages: write
+
 on:
   # Allow pipeline to be run manually.
   workflow_dispatch: {}
