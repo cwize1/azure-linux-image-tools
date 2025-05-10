@@ -160,6 +160,3 @@ jobs:
       with:
         name: container-${{ inputs.arch }}
         path: imagecustomizer.tar.gz
-
-  build-docs:
-    uses: ./.github/workflows/docs-build.yml
