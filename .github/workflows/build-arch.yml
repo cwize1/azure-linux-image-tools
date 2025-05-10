@@ -138,7 +138,7 @@ jobs:
         set -x
 
         CONTAINER_TAG="imagecustomizer:build"
-        ./repo/toolkit/tools/imagecustomizer/container/build-container.sh -t "$CONTAINER_TAG"
+        ./repo/toolkit/tools/imagecustomizer/container/build-container.sh -t "$CONTAINER_TAG" -a "${{ inputs.arch }}"
 
         docker image save "$CONTAINER_TAG" | gzip > "imagecustomizer.tar.gz"
 
