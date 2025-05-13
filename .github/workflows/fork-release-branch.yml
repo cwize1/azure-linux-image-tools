@@ -59,10 +59,15 @@ jobs:
         set -x
 
         pushd ./repo
+
+        # Switch to main branch.
+        git fetch --depth=1 --prune origin main
         git checkout origin/main
 
+        # Bump version.
         NEXT_MINOR_VERSION="$(python3 .github/workflows/scripts/bump_minor_version.py)"
 
+        # Commit and push.
         BUMP_VERSION_BRANCH="workflows/bumpVersion${NEXT_MINOR_VERSION}"
         git checkout -b "${BUMP_VERSION_BRANCH}"
 
