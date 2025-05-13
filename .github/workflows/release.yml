@@ -27,6 +27,4 @@ jobs:
     needs:
     - build
 
-  # Open bump version PR
-
   # Publish GitHub release

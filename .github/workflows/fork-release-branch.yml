@@ -56,17 +56,19 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
-        # Prepare bump version change.
-        NEXT_MINOR_VERSION="???"
-        BUMP_VERSION_BRANCH="workflows/bumpVersion${NEXT_MINOR_VERSION}"
-        git checkout -b "${BUMP_VERSION_BRANCH}" main
+        set -x
 
-        sed -i "s/image_customizer_version ?= .*/image_customizer_version ?= ${NEXT_MINOR_VERSION}/" toolkit/scripts/build_tag_imagecustomizer.mk
+        pushd ./repo
+        git checkout origin/main
+
+        NEXT_MINOR_VERSION="$(python3 .github/workflows/scripts/bump_minor_version.py)"
+
+        BUMP_VERSION_BRANCH="workflows/bumpVersion${NEXT_MINOR_VERSION}"
+        git checkout -b "${BUMP_VERSION_BRANCH}"
 
         git add -A
         git commit -m "Bump version to v${NEXT_MINOR_VERSION}"
+        git push -u origin "${BUMP_VERSION_BRANCH}"
 
-        # Open bump version PR.
+        # Open PR.
         gh pr create -B main -H "${BUMP_VERSION_BRANCH}" --title "Bump version to v${NEXT_MINOR_VERSION}" --body ""
-
-        TODO: Auto-patch version.
