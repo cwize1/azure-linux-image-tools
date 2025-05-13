@@ -1,0 +1,72 @@
+# Copyright (c) Microsoft Corporation.
+# Licensed under the MIT License.
+
+name: Fork release branch
+
+permissions:
+  # Create release branch and publish release.
+  contents: write
+
+on:
+  workflow_call: {}
+
+jobs:
+  fork-branch:
+    name: Fork release branch
+    runs-on: ubuntu-latest
+    permissions:
+      # Create release branch and publish release.
+      contents: write
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+      with:
+        path: repo
+
+    - name: Download build artifacts
+      uses: actions/download-artifact@v4
+      with:
+        path: out
+        name: version
+
+    - name: Fork release branch
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      run: |
+        set -x
+
+        VERSION=$(<"out/version.txt")
+        MINOR_VERSION="$(grep -oP '^[0-9]+\.[0-9]+' <<< "$VERSION")"
+
+        echo "MINOR_VERSION=${MINOR_VERSION}" >> "$GITHUB_ENV"
+
+        pushd ./repo
+
+        # Push new release branch.
+        MINOR_VERSION_BRANCH="release/v${MINOR_VERSION}"
+        git checkout -b "$MINOR_VERSION_BRANCH"
+        git push --set-upstream origin "$MINOR_VERSION_BRANCH"
+
+        # Push release tag.
+        TAG="v${VERSION}"
+        git tag "$TAG"
+        git push origin tag "$TAG"
+
+    - name: Open bump version PR
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      run: |
+        # Prepare bump version change.
+        NEXT_MINOR_VERSION="???"
+        BUMP_VERSION_BRANCH="workflows/bumpVersion${NEXT_MINOR_VERSION}"
+        git checkout -b "${BUMP_VERSION_BRANCH}" main
+
+        sed -i "s/image_customizer_version ?= .*/image_customizer_version ?= ${NEXT_MINOR_VERSION}/" toolkit/scripts/build_tag_imagecustomizer.mk
+
+        git add -A
+        git commit -m "Bump version to v${NEXT_MINOR_VERSION}"
+
+        # Open bump version PR.
+        gh pr create -B main -H "${BUMP_VERSION_BRANCH}" --title "Bump version to v${NEXT_MINOR_VERSION}" --body ""
+
+        TODO: Auto-patch version.
