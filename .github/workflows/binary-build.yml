@@ -102,15 +102,13 @@ jobs:
       run: |
         set -x
 
-        pushd repo/toolkit
-
         # Create version suffix.
         case "${{ inputs.publishType }}" in
           "official")
             PRERELEASE_PARAM="IMAGE_CUSTOMIZER_VERSION_PREVIEW="
             ;;
           "patch")
-            PATCH_VERSION="$(python3 .github/workflows/scripts/next_patch_version.py)"
+            PATCH_VERSION="$(python3 ./repo/.github/workflows/scripts/next_patch_version.py)"
             PRERELEASE_PARAM="IMAGE_CUSTOMIZER_VERSION_PREVIEW= IMAGE_CUSTOMIZER_VERSION=$PATCH_VERSION"
             ;;
           "preview")
@@ -123,6 +121,8 @@ jobs:
             PRERELEASE_PARAM="IMAGE_CUSTOMIZER_VERSION_PREVIEW=-dev.${{github.run_id}}"
             ;;
         esac
+
+        pushd repo/toolkit
 
         # Build binary.
         sudo env "PATH=$PATH" make imagecustomizer-targz go-imager go-osmodifier $PRERELEASE_PARAM
