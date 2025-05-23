@@ -107,6 +107,10 @@ jobs:
           "official")
             PRERELEASE_PARAM="IMAGE_CUSTOMIZER_VERSION_PREVIEW="
             ;;
+          "patch")
+            PATCH_VERSION="$(python3 .github/workflows/scripts/next_patch_version.py)"
+            PRERELEASE_PARAM="IMAGE_CUSTOMIZER_VERSION_PREVIEW= IMAGE_CUSTOMIZER_VERSION=$PATCH_VERSION"
+            ;;
           "preview")
             PRERELEASE_PARAM="IMAGE_CUSTOMIZER_VERSION_PREVIEW=-preview.${{github.run_id}}"
             ;;
