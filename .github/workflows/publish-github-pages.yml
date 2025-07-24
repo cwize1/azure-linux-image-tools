@@ -1,6 +1,6 @@
 name: Publish GitHub pages
 
-permissions: []
+permissions: {}
 
 on:
   workflow_call: {}

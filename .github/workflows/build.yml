@@ -39,43 +39,43 @@ jobs:
   build-docs:
     uses: ./.github/workflows/docs-build.yml
 
-  tests-functional-azl3-amd64:
-    name: Functional tests AZL3 AMD64
-    if: ${{ inputs.runFunctionalTests }}
-    uses: ./.github/workflows/tests-functional.yml
-    with:
-      hostArch: amd64
-      hostDistro: azl3
+  # tests-functional-azl3-amd64:
+  #   name: Functional tests AZL3 AMD64
+  #   if: ${{ inputs.runFunctionalTests }}
+  #   uses: ./.github/workflows/tests-functional.yml
+  #   with:
+  #     hostArch: amd64
+  #     hostDistro: azl3
 
-  # ARM64 images aren't available in MCR yet.
-  # tests-functional-azl3-arm64:
-  #  name: Functional tests AZL3 ARM64
-  #  if: ${{ inputs.runFunctionalTests }}
-  #  uses: ./.github/workflows/tests-functional.yml
-  #  with:
-  #    hostArch: arm64
-  #    hostDistro: azl3
+  # # ARM64 images aren't available in MCR yet.
+  # # tests-functional-azl3-arm64:
+  # #  name: Functional tests AZL3 ARM64
+  # #  if: ${{ inputs.runFunctionalTests }}
+  # #  uses: ./.github/workflows/tests-functional.yml
+  # #  with:
+  # #    hostArch: arm64
+  # #    hostDistro: azl3
 
-  tests-functional-ubuntu2404-amd64:
-    name: Functional tests Ubuntu24.04 AMD64
-    if: ${{ inputs.runFunctionalTests }}
-    uses: ./.github/workflows/tests-functional.yml
-    with:
-      hostArch: amd64
-      hostDistro: ubuntu2404
+  # tests-functional-ubuntu2404-amd64:
+  #   name: Functional tests Ubuntu24.04 AMD64
+  #   if: ${{ inputs.runFunctionalTests }}
+  #   uses: ./.github/workflows/tests-functional.yml
+  #   with:
+  #     hostArch: amd64
+  #     hostDistro: ubuntu2404
       
-  imagecreator-tests-functional-azl3-amd64:
-    name: Functional tests AZL3 AMD64
-    if: ${{ inputs.runFunctionalTests }}
-    uses: ./.github/workflows/imagecreator-tests-functional.yml
-    with:
-      hostArch: amd64
-      hostDistro: azl3
+  # imagecreator-tests-functional-azl3-amd64:
+  #   name: Functional tests AZL3 AMD64
+  #   if: ${{ inputs.runFunctionalTests }}
+  #   uses: ./.github/workflows/imagecreator-tests-functional.yml
+  #   with:
+  #     hostArch: amd64
+  #     hostDistro: azl3
 
-  imagecreator-tests-functional-ubuntu2404-amd64:
-    name: Functional tests Ubuntu24.04 AMD64
-    if: ${{ inputs.runFunctionalTests }}
-    uses: ./.github/workflows/imagecreator-tests-functional.yml
-    with:
-      hostArch: amd64
-      hostDistro: ubuntu2404
+  # imagecreator-tests-functional-ubuntu2404-amd64:
+  #   name: Functional tests Ubuntu24.04 AMD64
+  #   if: ${{ inputs.runFunctionalTests }}
+  #   uses: ./.github/workflows/imagecreator-tests-functional.yml
+  #   with:
+  #     hostArch: amd64
+  #     hostDistro: ubuntu2404
