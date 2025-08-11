@@ -42,6 +42,8 @@ jobs:
 
   build-docs:
     uses: ./.github/workflows/docs-build.yml
+    permissions:
+      contents: read
 
   tests-functional-azl3-amd64:
     name: Functional tests AZL3 AMD64
