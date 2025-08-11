@@ -3,10 +3,7 @@
 
 name: Build binary, container, and docs
 
-permissions:
-  contents: read
-  # Azure login.
-  id-token: write
+permissions: {}
 
 on:
   workflow_call:
@@ -31,6 +28,8 @@ jobs:
     with:
       publishType: ${{ inputs.publishType }}
       arch: amd64
+    permissions:
+      contents: read
 
   binary-build-arm64:
     name: Build ARM64
@@ -38,6 +37,8 @@ jobs:
     with:
       publishType: ${{ inputs.publishType }}
       arch: arm64
+    permissions:
+      contents: read
 
   build-docs:
     uses: ./.github/workflows/docs-build.yml
@@ -49,6 +50,10 @@ jobs:
     with:
       hostArch: amd64
       hostDistro: azl3
+    permissions:
+      contents: read
+      # Azure login.
+      id-token: write
 
   tests-functional-azl3-arm64:
    name: Functional tests AZL3 ARM64
@@ -57,6 +62,10 @@ jobs:
    with:
      hostArch: arm64
      hostDistro: azl3
+  permissions:
+    contents: read
+    # Azure login.
+    id-token: write
 
   tests-functional-ubuntu2404-amd64:
     name: Functional tests Ubuntu24.04 AMD64
@@ -65,6 +74,10 @@ jobs:
     with:
       hostArch: amd64
       hostDistro: ubuntu2404
+    permissions:
+      contents: read
+      # Azure login.
+      id-token: write
 
   tests-functional-ubuntu2404-arm64:
     name: Functional tests Ubuntu24.04 ARM64
@@ -73,6 +86,10 @@ jobs:
     with:
       hostArch: arm64
       hostDistro: ubuntu2404
+    permissions:
+      contents: read
+      # Azure login.
+      id-token: write
 
   imagecreator-tests-functional-azl3-amd64:
     name: Functional tests AZL3 AMD64
@@ -98,6 +115,10 @@ jobs:
     with:
       hostArch: amd64
       hostDistro: azl3
+    permissions:
+      contents: read
+      # Azure login.
+      id-token: write
 
   tests-vmtests-ubuntu2404-amd64:
     name: VMTests suite Ubuntu24.04 AMD64
@@ -107,6 +128,10 @@ jobs:
     with:
       hostArch: amd64
       hostDistro: ubuntu2404
+    permissions:
+      contents: read
+      # Azure login.
+      id-token: write
 
   tests-vmtests-ubuntu2404-arm64:
     name: VMTests suite Ubuntu24.04 ARM64
@@ -116,6 +141,8 @@ jobs:
     with:
       hostArch: arm64
       hostDistro: ubuntu2404
+    permissions:
+      contents: read
 
   tests-vmtests-imagecreator-azl3-amd64:
     name: VMTests suite image creator AZL3 AMD64
@@ -125,6 +152,8 @@ jobs:
     with:
       hostArch: amd64
       hostDistro: azl3
+    permissions:
+      contents: read
 
   tests-vmtests-imagecreator-ubuntu2404-amd64:
     name: VMTests suite image creator Ubuntu24.04 AMD64
@@ -133,7 +162,9 @@ jobs:
     uses: ./.github/workflows/tests-vmtests-imagecreator.yml
     with:
       hostArch: amd64
-      hostDistro: ubuntu2404    
+      hostDistro: ubuntu2404
+    permissions:
+      contents: read
 
   tests-vmtests-imagecreator-ubuntu2404-arm64:
     name: VMTests suite image creator Ubuntu24.04 ARM64
@@ -143,3 +174,5 @@ jobs:
     with:
       hostArch: arm64
       hostDistro: ubuntu2404
+    permissions:
+      contents: read
