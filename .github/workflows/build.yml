@@ -56,16 +56,16 @@ jobs:
       id-token: write
 
   tests-functional-azl3-arm64:
-   name: Functional tests AZL3 ARM64
-   if: ${{ inputs.runFunctionalTests }}
-   uses: ./.github/workflows/tests-functional.yml
-   with:
-     hostArch: arm64
-     hostDistro: azl3
-  permissions:
-    contents: read
-    # Azure login.
-    id-token: write
+    name: Functional tests AZL3 ARM64
+    if: ${{ inputs.runFunctionalTests }}
+    uses: ./.github/workflows/tests-functional.yml
+    with:
+      hostArch: arm64
+      hostDistro: azl3
+    permissions:
+      contents: read
+      # Azure login.
+      id-token: write
 
   tests-functional-ubuntu2404-amd64:
     name: Functional tests Ubuntu24.04 AMD64
