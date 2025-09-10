@@ -7,15 +7,15 @@ from version_utils import getMakefileVersion, getVersionTags
 
 def main():
     makefileVersion = getMakefileVersion()
+    makefileVersionMgrMin = makefileVersion[0:2]
 
     versions = getVersionTags(merged=True)
 
     mostRecentVersion = None
+    mostRecentVersionMgrMin = None
     if len(versions) > 0:
         mostRecentVersion = versions[0]
-
-    makefileVersionMgrMin = makefileVersion[0:2]
-    mostRecentVersionMgrMin = mostRecentVersion[0:2]
+        mostRecentVersionMgrMin = mostRecentVersion[0:2]
 
     if mostRecentVersion is not None and makefileVersionMgrMin < mostRecentVersionMgrMin:
         print(f"Makefile major/minor version is less than most recent major/minor version: "+
