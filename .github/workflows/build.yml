@@ -22,23 +22,23 @@ on:
         value: ${{ jobs.binary-build-amd64.outputs.isLatestRelease }}
 
 jobs:
-  # binary-build-amd64:
-  #   name: Build AMD64
-  #   uses: ./.github/workflows/binary-build.yml
-  #   with:
-  #     publishType: ${{ inputs.publishType }}
-  #     arch: amd64
-  #   permissions:
-  #     contents: read
+  binary-build-amd64:
+    name: Build AMD64
+    uses: ./.github/workflows/binary-build.yml
+    with:
+      publishType: ${{ inputs.publishType }}
+      arch: amd64
+    permissions:
+      contents: read
 
-  # binary-build-arm64:
-  #   name: Build ARM64
-  #   uses: ./.github/workflows/binary-build.yml
-  #   with:
-  #     publishType: ${{ inputs.publishType }}
-  #     arch: arm64
-  #   permissions:
-  #     contents: read
+  binary-build-arm64:
+    name: Build ARM64
+    uses: ./.github/workflows/binary-build.yml
+    with:
+      publishType: ${{ inputs.publishType }}
+      arch: arm64
+    permissions:
+      contents: read
 
   build-docs:
     uses: ./.github/workflows/docs-build.yml
