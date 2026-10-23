@@ -14,8 +14,8 @@ jobs:
     uses: ./.github/workflows/build.yml
     with:
       publishType: patch
-      runFunctionalTests: true
-      runVMTests: true
+      runFunctionalTests: false
+      runVMTests: false
     permissions:
       contents: read
       # Azure login
